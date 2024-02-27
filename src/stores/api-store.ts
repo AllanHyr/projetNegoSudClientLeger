@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('counter', {
+export const useApiStore = defineStore('api', {
   state: () => ({
-    counter: 0,
+    counter: parseInt(localStorage.getItem('counter') ?? '0', 10)
   }),
   getters: {
     doubleCount: (state) => state.counter * 2,
@@ -10,6 +10,7 @@ export const useCounterStore = defineStore('counter', {
   actions: {
     increment() {
       this.counter++;
+      localStorage.setItem('counter', this.counter.toString());
     },
   },
 });
